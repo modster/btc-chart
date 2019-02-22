@@ -1,2 +1,0 @@
-# Create a line chart
-

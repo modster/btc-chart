@@ -1,5 +1,5 @@
 //API to fetch historical data of Bitcoin Price Index
-const api = 'https://api.coindesk.com/v1/bpi/historical/close.json?start=2017-12-31&end=2019-02-20';
+const api = 'https://api.coindesk.com/v1/bpi/historical/close.json?start=2017-12-31&end=2019-02-20'; //<-----------------------to-do:_make time frame 1 year from today 
 
 /**
  * Loading data from API when DOM Content has been loaded'.

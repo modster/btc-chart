@@ -57,11 +57,11 @@
  * ?for=yesterday               Specifying this will return a single value for the previous day. Overrides the start/end parameter.
  * Sample Request:              https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2013-09-05 
  */
-const today = new Date();
-const dd = today.getDate();
-const mm = today.getMonth()+1; //January is 0!
-const yyyy = today.getFullYear();
-
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+var yyyyMinusOne = yyyy-1;
 if(dd<10) {
     dd = '0'+dd
 } 
@@ -69,7 +69,7 @@ if(mm<10) {
     mm = '0'+mm
 } 
 
-const api = 'https://api.coindesk.com/v1/bpi/historical/close.json?start='+ yyyy-1 +'-'+ mm + '-'+ dd +'&end='+ yyyy +'-'+ mm +'-'+ dd;
+var api = 'https://api.coindesk.com/v1/bpi/historical/close.json?start='+ yyyyMinusOne +'-'+ mm + '-'+ dd +'&end='+ yyyy +'-'+ mm +'-'+ dd;
 console.log(api)
 /**
  * Loading data from API when DOM Content has been loaded'.

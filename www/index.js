@@ -1,61 +1,58 @@
-/**********************************************************************************************************************************
- *                                                                                                                                *
- *                                                20th Century Fox News Presents:                                                 *
- *                                                                                                                                *
- *                                               Summer 2019's Blockbuster Hit App                                                *
- *                                                                                                                                *
- ***********************************************************************************************************************************                                                                                                                                *
- *                                                                                                                                *
- *                                             B  I  T  C  O  I  N  -  C  H  A  R  T                                              *
- *                                                                                                                                *
- *                                                             ~ * ~                                                              *
- *                                                                                                                                *
- *                                                     E p i s o d e  X I I I                                                     *
- *                                                                                                                                *
- *                                           ' B u t t C o i n  B r e a k s  W i n d '                                            *
- *                                                                                                                                *
- *                                                                                                                                *
- **********************************************************************************************************************************
- *                                                                                                                                *
- *                                                                                                                                *
- *                                                           Starring                                                             *
- *                                                                                                                                *
- *                                           M I K E  " T h e  B o s s "  B O S T O C K                                           *
- *                                                                                                                                *
- *                                                              and                                                               *
- *                                                                                                                                *
- *                                                            D 3 J S                                                             *
- *                                                                                                                                *
- *                                                                                                                                *
- **********************************************************************************************************************************
- *                                                                                                                                *
- *                                                      Executive Producer:                                                       *
- *                                                                                                                                *
- *                                                     M I K E   G R E E F F                                                      *
- *                                                                                                                                *
- *                                                       mike@greeffer.com                                                        *
- *                                                                                                                                *
- *                                                             ~ * ~                                                              *
- *                                                                                                                                *
- *                                                        Special Thanks:                                                         *
- *                                                                                                                                *
- *                                                       The Repo I cloned                                                        *
- *                                                            My Wife                                                             *
- *                                                         My Girlfriend                                                          *
- *                                                      Maxwell House Coffee                                                      *
- *                                                          CoinDesk API                                                          *
- *                                                         Donald J Trump                                                         *
- *                                                                                                                                *
- *********************************************************************************************************************************/
 
- /**
- * Historical BPI endpoint:     https://api.coindesk.com/v1/bpi/historical/close.json (returns previous 31 days' price data)
- * ?index=USD/CNY               The index to return data for. Defaults to USD.
- * ?currency=<VALUE>            The currency to return the data in, specified in ISO 4217 format. Defaults to USD.
- * ?start=<VALUE>&end=<VALUE>   Allows data to be returned for a specific date range. Must be listed as a pair of start and end
- *                              parameters, with dates supplied in the YYYY-MM-DD format, e.g. 2013-09-01 for September 1st, 2013.
- * ?for=yesterday               Specifying this will return a single value for the previous day. Overrides the start/end parameter.
- * Sample Request:              https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2013-09-05 
+/**
+ * A function that populates a drop down list with data from a JSON file 
+ */
+let dropdown = document.getElementById('supported-currencies');
+dropdown.length = 0;
+
+let defaultOption = document.createElement('option');
+defaultOption.text = 'Choose Default Fiat Currency';
+
+dropdown.add(defaultOption);
+dropdown.selectedIndex = 0;
+
+const url = 'supported-currencies.json';
+
+const request = new XMLHttpRequest();
+request.open('GET', url, true);
+
+request.onload = function() {
+  if (request.status === 200) {
+    const data = JSON.parse(request.responseText);
+    let option;
+    for (let i = 0; i < data.length; i++) {
+      option = document.createElement('option');
+      option.text = data[i].name;
+      option.value = data[i].abbreviation; //<--------------------------------####
+      dropdown.add(option);
+    }
+   } else {
+    // Reached the server, but it returned an error
+  }   
+}
+
+request.onerror = function() {
+  console.error('An error occurred fetching the JSON from ' + url); //<-----just load USD
+};
+
+request.send();
+
+/**
+let dropdown = $('#supported-currencies');
+dropdown.empty();
+dropdown.append('<option selected="true" disabled>Choose Default Fiat Currency');
+dropdown.prop('selectedIndex', 0); // <-----------------------------------to do: put most common at top-----------------||||||
+
+const url = 'supported-currencies.json';
+
+$.getJSON(url, function (data) {
+  $.each(data, function (key, entry) {
+    dropdown.append($('<option></option>').attr('value', entry.abbreviation).text(entry.name));
+  })
+});
+*/
+/**
+ * A date function to get one year of data by default
  */
 var today = new Date();
 var dd = today.getDate();
@@ -71,6 +68,7 @@ if(mm<10) {
 
 var api = 'https://api.coindesk.com/v1/bpi/historical/close.json?start='+ yyyyMinusOne +'-'+ mm + '-'+ dd +'&end='+ yyyy +'-'+ mm +'-'+ dd;
 console.log(api)
+
 /**
  * Loading data from API when DOM Content has been loaded'.
  */

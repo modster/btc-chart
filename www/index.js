@@ -22,8 +22,8 @@ request.onload = function() {
     let option;
     for (let i = 0; i < data.length; i++) {
       option = document.createElement('option');
-      option.text = data[i].name;
-      option.value = data[i].abbreviation; //<--------------------------------####
+      option.text = data[i].country;
+      option.value = data[i].currency; //<--------------------------------####
       dropdown.add(option);
     }
    } else {
@@ -35,7 +35,7 @@ request.onerror = function() {
   console.error('An error occurred fetching the JSON from ' + url); //<-----just load USD
 };
 
-request.send();
+request.send(); 
 
 /**
 let dropdown = $('#supported-currencies');

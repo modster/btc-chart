@@ -23,16 +23,16 @@ request.onload = function() {
     for (let i = 0; i < data.length; i++) {
       option = document.createElement('option');
       option.text = data[i].country;
-      option.value = data[i].currency; //<--------------------------------####
+      option.value = data[i].currency; //<--------------------------------------use the value to fetch new chart
       dropdown.add(option);
     }
    } else {
-    // Reached the server, but it returned an error
+    // Reached the server, but it returned an error // <------------------------else load USD ?
   }   
 }
 
 request.onerror = function() {
-  console.error('An error occurred fetching the JSON from ' + url); //<-----just load USD
+  console.error('An error occurred fetching the JSON from ' + url); //<---------just load USD
 };
 
 request.send(); 

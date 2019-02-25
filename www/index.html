@@ -1,17 +1,23 @@
-<html>
+<html> <!-----------------------------------------------------------------------To Do:      -->
     <head><link rel="stylesheet" href="normalize.css">
         <link rel="stylesheet" href="index.css">
-        <title>Crypto Currency Chart</title> <!-- ----------------------------------------- fix title -->
+        <title>Crypto Currency Chart</title> <!-- ------------------------------fix title   -->
     </head>
     <body>
 
-        <h1>Date, Time, Crypto, Currency</h1>
-        <h2>data provided by coindesk</h2> <!----------------------------------add other exchages too -->
+        <div id ="main-title"> <!-----------------------------------------------Use DOM to change these attrs       -->
+            <div id = "crypto-name">crypto-name</div>
+            <div id = "fiat-name">fiat</div>
+            <div id = "todays-date">Date</div>
+            <div id = "time">Time</div>
+        </div>
+
+        <h2>data provided by coindesk</h2> <!-----------------------------------add other exchages too      -->
         <svg class="line-chart"></svg>
-        <select id="supported-currencies" name="locality">
-            
+        <select id="supported-currencies" name="locality"> <!-------------------maybe use the "multiple attribute?      -->
+            <!------------------------------------------------------------------reload page upon selection      -->
         </select>
-        <script src="https://d3js.org/d3.v4.min.js"></script> <!-- --------------------load locally ! -->
+        <script src="https://d3js.org/d3.v4.min.js"></script> <!-- -------------load locally !      -->
         <script src="index.js"></script>
     </body>
 </html>

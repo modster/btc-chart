@@ -38,19 +38,13 @@ request.onerror = function() {
 request.send(); 
 
 /**
-let dropdown = $('#supported-currencies');
-dropdown.empty();
-dropdown.append('<option selected="true" disabled>Choose Default Fiat Currency');
-dropdown.prop('selectedIndex', 0); // <-----------------------------------to do: put most common at top-----------------||||||
+ * Internationalization <-------------------------------------------------------TO DO
+ */
 
-const url = 'supported-currencies.json';
+ /**
+ * A method that reloads page upon selection of currency/fiat/language <--------TO DO
+ */
 
-$.getJSON(url, function (data) {
-  $.each(data, function (key, entry) {
-    dropdown.append($('<option></option>').attr('value', entry.abbreviation).text(entry.name));
-  })
-});
-*/
 /**
  * A date function to get one year of data by default
  */
